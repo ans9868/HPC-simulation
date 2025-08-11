@@ -1,1 +1,1 @@
-docker run --privileged -it -v /Users/user/bigData/ds004504-download:/Users/user/bigData/ds004504-download hpc-sim:rocky9 /bin/bash
+docker run --privileged -it -v /Volumes/CrucialX6/Home/bigData/ds004504-download:/Volumes/CrucialX6/Home/bigData/ds004504-download -v /Volumes/CrucialX6/Home/projects/HPC-simulation/config_macmini1.0.0_09-08-2025_1751.yaml:/config/config_macmini1.0.0_09-08-2025_1751.yaml -v /Volumes/CrucialX6/Home/projects/HPC-simulation/config_macmini1.0.0_09-08-2025_1751.yaml:/config_macmini1.0.0_09-08-2025_1751.yaml hpc-sim:rocky9 /bin/bash

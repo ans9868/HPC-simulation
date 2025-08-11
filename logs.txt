@@ -1,0 +1,571 @@
+[root@f1beba1b1841 eeg-full-pipeline]# python start-pipelines.py
+📁 Using most recent config: config_macmini1.0.0_09-08-2025_1751.yaml
+🚀 Starting pipeline with deployment method: Singularity without Slurm
+🎯 Pipeline mode: full
+💡 Checking for required container images...
+✅ Found pyspark container: eeg-pyspark-pipeline.sif (1521.4 MB)
+✅ Found ray container: eeg-ray-tuner.sif (195.6 MB)
+
+🔒 Running PySpark Singularity container...
+📁 Created/verified directory: config
+📁 Created/verified directory: config/spark
+📁 Created/verified directory: logs
+📁 Created/verified directory: logs/spark-events
+📁 Created/verified directory: /eeg-full-pipeline/data
+🔗 Adding mount: /Volumes/CrucialX6/Home/bigData/ds004504-download/sub-001/eeg/sub-001_task-eyesclosed_eeg.set -> /Volumes/CrucialX6/Home/bigData/ds004504-download/sub-001/eeg/sub-001_task-eyesclosed_eeg.set
+🔗 Mounting 4 directories:
+🔗 Running command: ['singularity', 'run', '--bind', '/eeg-full-pipeline/config/config_macmini1.0.0_09-08-2025_1751.yaml:/app/config.yaml', '--bind', './logs/spark-events:/opt/bitnami/spark/logs/', '--bind', './data:/app/data', '--bind', '/Volumes/CrucialX6/Home/bigData/ds004504-download/sub-001/eeg/sub-001_task-eyesclosed_eeg.set:/Volumes/CrucialX6/Home/bigData/ds004504-download/sub-001/eeg/sub-001_task-eyesclosed_eeg.set', './containers/eeg-pyspark-pipeline.sif', 'spark-submit', '--conf', 'spark.jars.ivy=/tmp/.ivy2', '/app/main.py', '--config', '/app/config.yaml']
+🚀 Starting pyspark container... (this may take a while)
+🚀 [ENTRYPOINT] creating the .ivy2 folder and running the start command
+🚀 [ENTRYPOINT] Set HADOOP_USER_NAME=spark
+🚀 [ENTRYPOINT] Set the path and timestamp for the spark-driver log file
+🚀 [ENTRYPOINT] spark environment and logging configured
+🚀 [ENTRYPOINT] Running: spark-submit --conf spark.jars.ivy=/tmp/.ivy2 /app/main.py --config /app/config.yaml
+🚀 🔧 Loading configuration from: /app/config.yaml
+🚀 📋 Configuration loaded successfully!
+🚀 🔍 Checking mounted data accessibility...
+🚀 📁 Found 1 file paths to check
+🚀 ✓ /Volumes/CrucialX6/Home/bigData/ds004504-download/sub-001/eeg/sub-001_task-eyesclosed_eeg.set -> /Volumes/CrucialX6/Home/bigData/ds004504-download/sub-001/eeg/sub-001_task-eyesclosed_eeg.set
+🚀 📊 Data accessibility summary:
+🚀 Total paths: 1
+🚀 Accessible: 1
+🚀 Inaccessible: 0
+🚀 ✅ All data paths are accessible!
+🚀 🚀 Building PySpark session...
+🚀 ✅ Found 'master': 7
+🚀 ✅ Found 'driver_memory': 7
+🚀 ✅ Found 'executor_memory': 7
+🚀 ✅ Found 'executor_cores': 3
+🚀 ✅ Found 'shuffle_partitions': 9
+🚀 25/08/10 05:35:13 INFO SparkContext: Running Spark version 3.5.6
+🚀 25/08/10 05:35:13 INFO SparkContext: OS info Linux, 6.10.14-linuxkit, aarch64
+🚀 25/08/10 05:35:13 INFO SparkContext: Java version 17.0.15
+🚀 25/08/10 05:35:13 INFO ResourceUtils: ==============================================================
+🚀 25/08/10 05:35:13 INFO ResourceUtils: No custom resources configured for spark.driver.
+🚀 25/08/10 05:35:13 INFO ResourceUtils: ==============================================================
+🚀 25/08/10 05:35:13 INFO SparkContext: Submitted application: macMini2.0.0
+🚀 25/08/10 05:35:13 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 3, script: , vendor: , memory -> name: memory, amount: 7168, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+🚀 25/08/10 05:35:13 INFO ResourceProfile: Limiting resource is cpus at 3 tasks per executor
+🚀 25/08/10 05:35:13 INFO ResourceProfileManager: Added ResourceProfile id: 0
+🚀 25/08/10 05:35:13 INFO SecurityManager: Changing view acls to: ?,spark
+🚀 25/08/10 05:35:13 INFO SecurityManager: Changing modify acls to: ?,spark
+🚀 25/08/10 05:35:13 INFO SecurityManager: Changing view acls groups to:
+🚀 25/08/10 05:35:13 INFO SecurityManager: Changing modify acls groups to:
+🚀 25/08/10 05:35:13 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: ?, spark; groups with view permissions: EMPTY; users with modify permissions: ?, spark; groups with modify permissions: EMPTY
+🚀 25/08/10 05:35:13 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+🚀 25/08/10 05:35:13 INFO Utils: Successfully started service 'sparkDriver' on port 43935.
+🚀 25/08/10 05:35:13 INFO SparkEnv: Registering MapOutputTracker
+🚀 25/08/10 05:35:13 INFO SparkEnv: Registering BlockManagerMaster
+🚀 25/08/10 05:35:13 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+🚀 25/08/10 05:35:13 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+🚀 25/08/10 05:35:13 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+🚀 25/08/10 05:35:13 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-b2a25d66-470b-4826-a5c9-95b93a0abe59
+🚀 25/08/10 05:35:13 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+🚀 25/08/10 05:35:13 INFO SparkEnv: Registering OutputCommitCoordinator
+🚀 25/08/10 05:35:13 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+🚀 25/08/10 05:35:13 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+🚀 25/08/10 05:35:13 INFO Executor: Starting executor ID driver on host f1beba1b1841
+🚀 25/08/10 05:35:13 INFO Executor: OS info Linux, 6.10.14-linuxkit, aarch64
+🚀 25/08/10 05:35:13 INFO Executor: Java version 17.0.15
+🚀 25/08/10 05:35:13 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+🚀 25/08/10 05:35:13 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@3f46bd39 for default.
+🚀 25/08/10 05:35:13 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 38967.
+🚀 25/08/10 05:35:13 INFO NettyBlockTransferService: Server created on f1beba1b1841:38967
+🚀 25/08/10 05:35:13 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+🚀 25/08/10 05:35:13 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, f1beba1b1841, 38967, None)
+🚀 25/08/10 05:35:13 INFO BlockManagerMasterEndpoint: Registering block manager f1beba1b1841:38967 with 434.4 MiB RAM, BlockManagerId(driver, f1beba1b1841, 38967, None)
+🚀 25/08/10 05:35:13 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, f1beba1b1841, 38967, None)
+🚀 25/08/10 05:35:13 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, f1beba1b1841, 38967, None)
+🚀 🚀 Local mode detected - skipping file distribution
+🚀 Package files available through container filesystem
+🚀 ✅ PySpark session created successfully!
+🚀 Spark Version: 3.5.6
+🚀 Available Cores: 7
+🚀 Master: local[7]
+🚀 🔄 Passing config to process_subjects via function parameters...
+🚀 📁 Creating output directory structure...
+🚀 Base directory: ./data
+🚀 Project name: macMini2.0.0
+🚀 Full path: data/macMini2.0.0
+🚀 ✅ Output directory created: data/macMini2.0.0
+🚀 📁 Creating stage directories...
+🚀 ✅ Created: data/macMini2.0.0/raw
+🚀 ✅ Created: data/macMini2.0.0/processed_subjects
+🚀 ✅ Created: data/macMini2.0.0/transformed
+🚀 📋 Config copied to output directory:
+🚀 Source: /app/config.yaml
+🚀 Destination: data/macMini2.0.0/config_20250810_053513.yaml
+🚀 🔄 Reuse not enabled - proceeding with processing...
+🚀 ✅ process_subjects: Using passed ConfigManager
+🚀 📋 ConfigManager project: macMini2.0.0
+🚀 🔧 Validating configuration...
+🚀 🔄 Processing subjects using DataFrames...
+🚀 25/08/10 05:35:14 WARN FileSystem: Cannot load filesystem: java.util.ServiceConfigurationError: org.apache.hadoop.fs.FileSystem: Provider org.apache.hadoop.fs.viewfs.ViewFileSystem could not be instantiated
+🚀 25/08/10 05:35:14 WARN FileSystem: org.apache.hadoop.security.KerberosAuthException: failure to login: javax.security.auth.login.LoginException: java.lang.NullPointerException: invalid null input: name
+🚀 at jdk.security.auth/com.sun.security.auth.UnixPrincipal.<init>(Unknown Source)
+🚀 at jdk.security.auth/com.sun.security.auth.module.UnixLoginModule.login(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invoke(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invokePriv(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.login(Unknown Source)
+🚀 at org.apache.hadoop.security.UserGroupInformation$HadoopLoginContext.login(UserGroupInformation.java:2065)
+🚀 at org.apache.hadoop.security.UserGroupInformation.doSubjectLogin(UserGroupInformation.java:1975)
+🚀 at org.apache.hadoop.security.UserGroupInformation.createLoginUser(UserGroupInformation.java:719)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:669)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:579)
+🚀 at org.apache.hadoop.fs.viewfs.ViewFileSystem.<init>(ViewFileSystem.java:269)
+🚀 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+🚀 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+🚀 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+🚀 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Unknown Source)
+🚀 at java.base/java.lang.reflect.Constructor.newInstance(Unknown Source)
+🚀 at java.base/java.util.ServiceLoader$ProviderImpl.newInstance(Unknown Source)
+🚀 at java.base/java.util.ServiceLoader$ProviderImpl.get(Unknown Source)
+🚀 at java.base/java.util.ServiceLoader$3.next(Unknown Source)
+🚀 at org.apache.hadoop.fs.FileSystem.loadFileSystems(FileSystem.java:3379)
+🚀 at org.apache.hadoop.fs.FileSystem.getFileSystemClass(FileSystem.java:3424)
+🚀 at org.apache.hadoop.fs.FsUrlStreamHandlerFactory.<init>(FsUrlStreamHandlerFactory.java:77)
+🚀 at org.apache.spark.sql.internal.SharedState$.liftedTree2$1(SharedState.scala:199)
+🚀 at org.apache.spark.sql.internal.SharedState$.org$apache$spark$sql$internal$SharedState$$setFsUrlStreamHandlerFactory(SharedState.scala:198)
+🚀 at org.apache.spark.sql.internal.SharedState.<init>(SharedState.scala:54)
+🚀 at org.apache.spark.sql.SparkSession.$anonfun$sharedState$1(SparkSession.scala:143)
+🚀 at scala.Option.getOrElse(Option.scala:189)
+🚀 at org.apache.spark.sql.SparkSession.sharedState$lzycompute(SparkSession.scala:143)
+🚀 at org.apache.spark.sql.SparkSession.sharedState(SparkSession.scala:142)
+🚀 at org.apache.spark.sql.SparkSession.$anonfun$sessionState$2(SparkSession.scala:162)
+🚀 at scala.Option.getOrElse(Option.scala:189)
+🚀 at org.apache.spark.sql.SparkSession.sessionState$lzycompute(SparkSession.scala:160)
+🚀 at org.apache.spark.sql.SparkSession.sessionState(SparkSession.scala:157)
+🚀 at org.apache.spark.sql.Dataset$.$anonfun$ofRows$1(Dataset.scala:90)
+🚀 at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+🚀 at org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:89)
+🚀 at org.apache.spark.sql.SparkSession.internalCreateDataFrame(SparkSession.scala:572)
+🚀 at org.apache.spark.sql.SparkSession.applySchemaToPythonRDD(SparkSession.scala:877)
+🚀 at org.apache.spark.sql.SparkSession.applySchemaToPythonRDD(SparkSession.scala:862)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+🚀 at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+🚀 at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+🚀 at py4j.Gateway.invoke(Gateway.java:282)
+🚀 at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+🚀 at py4j.commands.CallCommand.execute(CallCommand.java:79)
+🚀 at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+🚀 at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+🚀 at java.base/java.lang.Thread.run(Unknown Source)
+🚀 25/08/10 05:35:14 WARN FileSystem: javax.security.auth.login.LoginException: java.lang.NullPointerException: invalid null input: name
+🚀 at jdk.security.auth/com.sun.security.auth.UnixPrincipal.<init>(Unknown Source)
+🚀 at jdk.security.auth/com.sun.security.auth.module.UnixLoginModule.login(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invoke(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invokePriv(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.login(Unknown Source)
+🚀 at org.apache.hadoop.security.UserGroupInformation$HadoopLoginContext.login(UserGroupInformation.java:2065)
+🚀 at org.apache.hadoop.security.UserGroupInformation.doSubjectLogin(UserGroupInformation.java:1975)
+🚀 at org.apache.hadoop.security.UserGroupInformation.createLoginUser(UserGroupInformation.java:719)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:669)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:579)
+🚀 at org.apache.hadoop.fs.viewfs.ViewFileSystem.<init>(ViewFileSystem.java:269)
+🚀 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+🚀 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+🚀 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+🚀 at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Unknown Source)
+🚀 at java.base/java.lang.reflect.Constructor.newInstance(Unknown Source)
+🚀 at java.base/java.util.ServiceLoader$ProviderImpl.newInstance(Unknown Source)
+🚀 at java.base/java.util.ServiceLoader$ProviderImpl.get(Unknown Source)
+🚀 at java.base/java.util.ServiceLoader$3.next(Unknown Source)
+🚀 at org.apache.hadoop.fs.FileSystem.loadFileSystems(FileSystem.java:3379)
+🚀 at org.apache.hadoop.fs.FileSystem.getFileSystemClass(FileSystem.java:3424)
+🚀 at org.apache.hadoop.fs.FsUrlStreamHandlerFactory.<init>(FsUrlStreamHandlerFactory.java:77)
+🚀 at org.apache.spark.sql.internal.SharedState$.liftedTree2$1(SharedState.scala:199)
+🚀 at org.apache.spark.sql.internal.SharedState$.org$apache$spark$sql$internal$SharedState$$setFsUrlStreamHandlerFactory(SharedState.scala:198)
+🚀 at org.apache.spark.sql.internal.SharedState.<init>(SharedState.scala:54)
+🚀 at org.apache.spark.sql.SparkSession.$anonfun$sharedState$1(SparkSession.scala:143)
+🚀 at scala.Option.getOrElse(Option.scala:189)
+🚀 at org.apache.spark.sql.SparkSession.sharedState$lzycompute(SparkSession.scala:143)
+🚀 at org.apache.spark.sql.SparkSession.sharedState(SparkSession.scala:142)
+🚀 at org.apache.spark.sql.SparkSession.$anonfun$sessionState$2(SparkSession.scala:162)
+🚀 at scala.Option.getOrElse(Option.scala:189)
+🚀 at org.apache.spark.sql.SparkSession.sessionState$lzycompute(SparkSession.scala:160)
+🚀 at org.apache.spark.sql.SparkSession.sessionState(SparkSession.scala:157)
+🚀 at org.apache.spark.sql.Dataset$.$anonfun$ofRows$1(Dataset.scala:90)
+🚀 at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+🚀 at org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:89)
+🚀 at org.apache.spark.sql.SparkSession.internalCreateDataFrame(SparkSession.scala:572)
+🚀 at org.apache.spark.sql.SparkSession.applySchemaToPythonRDD(SparkSession.scala:877)
+🚀 at org.apache.spark.sql.SparkSession.applySchemaToPythonRDD(SparkSession.scala:862)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+🚀 at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+🚀 at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+🚀 at py4j.Gateway.invoke(Gateway.java:282)
+🚀 at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+🚀 at py4j.commands.CallCommand.execute(CallCommand.java:79)
+🚀 at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+🚀 at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+🚀 at java.base/java.lang.Thread.run(Unknown Source)
+🚀 25/08/10 05:35:14 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+🚀 25/08/10 05:35:14 INFO SharedState: Warehouse path is 'file:/tmp/spark-warehouse'.
+🚀 25/08/10 05:35:14 INFO CodeGenerator: Code generated in 49.551167 ms
+🚀 📊 DataFrame partitioning info:
+🚀 Subjects count: 1
+🚀 DataFrame partitions: 7
+🚀 25/08/10 05:35:14 INFO SparkContext: Starting job: collect at /app/eeg_spark_etl/processing/process_subjects.py:76
+🚀 25/08/10 05:35:14 INFO DAGScheduler: Got job 0 (collect at /app/eeg_spark_etl/processing/process_subjects.py:76) with 7 output partitions
+🚀 25/08/10 05:35:14 INFO DAGScheduler: Final stage: ResultStage 0 (collect at /app/eeg_spark_etl/processing/process_subjects.py:76)
+🚀 25/08/10 05:35:14 INFO DAGScheduler: Parents of final stage: List()
+🚀 25/08/10 05:35:14 INFO DAGScheduler: Missing parents: List()
+🚀 25/08/10 05:35:14 INFO DAGScheduler: Submitting ResultStage 0 (PythonRDD[9] at collect at /app/eeg_spark_etl/processing/process_subjects.py:76), which has no missing parents
+🚀 25/08/10 05:35:14 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 16.7 KiB, free 434.4 MiB)
+🚀 25/08/10 05:35:14 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 8.2 KiB, free 434.4 MiB)
+🚀 25/08/10 05:35:14 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on f1beba1b1841:38967 (size: 8.2 KiB, free: 434.4 MiB)
+🚀 25/08/10 05:35:14 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1611
+🚀 25/08/10 05:35:14 INFO DAGScheduler: Submitting 7 missing tasks from ResultStage 0 (PythonRDD[9] at collect at /app/eeg_spark_etl/processing/process_subjects.py:76) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6))
+🚀 25/08/10 05:35:14 INFO TaskSchedulerImpl: Adding task set 0.0 with 7 tasks resource profile 0
+🚀 25/08/10 05:35:14 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (f1beba1b1841, executor driver, partition 0, PROCESS_LOCAL, 8979 bytes)
+🚀 25/08/10 05:35:14 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1) (f1beba1b1841, executor driver, partition 1, PROCESS_LOCAL, 8979 bytes)
+🚀 25/08/10 05:35:14 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2) (f1beba1b1841, executor driver, partition 2, PROCESS_LOCAL, 8979 bytes)
+🚀 25/08/10 05:35:14 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3) (f1beba1b1841, executor driver, partition 3, PROCESS_LOCAL, 8979 bytes)
+🚀 25/08/10 05:35:14 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4) (f1beba1b1841, executor driver, partition 4, PROCESS_LOCAL, 8979 bytes)
+🚀 25/08/10 05:35:14 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5) (f1beba1b1841, executor driver, partition 5, PROCESS_LOCAL, 8979 bytes)
+🚀 25/08/10 05:35:14 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6) (f1beba1b1841, executor driver, partition 6, PROCESS_LOCAL, 9118 bytes)
+🚀 25/08/10 05:35:14 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+🚀 25/08/10 05:35:14 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+🚀 25/08/10 05:35:14 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+🚀 25/08/10 05:35:14 INFO Executor: Running task 6.0 in stage 0.0 (TID 6)
+🚀 25/08/10 05:35:14 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+🚀 25/08/10 05:35:14 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+🚀 25/08/10 05:35:14 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+🚀 25/08/10 05:35:15 INFO CodeGenerator: Code generated in 5.831666 ms
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 364, boot = 287, init = 77, finish = 0
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 365, boot = 293, init = 72, finish = 0
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 367, boot = 284, init = 83, finish = 0
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 367, boot = 283, init = 84, finish = 0
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 362, boot = 285, init = 77, finish = 0
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 77, boot = 13, init = 64, finish = 0
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 377, boot = 298, init = 79, finish = 0
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 87, boot = 5, init = 81, finish = 1
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 91, boot = 21, init = 70, finish = 0
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 388, boot = 290, init = 97, finish = 1
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 101, boot = 10, init = 90, finish = 1
+🚀 25/08/10 05:35:15 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1688 bytes result sent to driver
+🚀 25/08/10 05:35:15 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 1731 bytes result sent to driver
+🚀 25/08/10 05:35:15 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1731 bytes result sent to driver
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 108, boot = 27, init = 81, finish = 0
+🚀 25/08/10 05:35:15 INFO Executor: Finished task 5.0 in stage 0.0 (TID 5). 1731 bytes result sent to driver
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 108, boot = 33, init = 75, finish = 0
+🚀 25/08/10 05:35:15 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 1688 bytes result sent to driver
+🚀 25/08/10 05:35:15 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 1688 bytes result sent to driver
+🚀 25/08/10 05:35:15 INFO PythonRunner: Times: total = 118, boot = 25, init = 93, finish = 0
+🚀 25/08/10 05:35:15 INFO Executor: Finished task 6.0 in stage 0.0 (TID 6). 1877 bytes result sent to driver
+🚀 25/08/10 05:35:15 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 508 ms on f1beba1b1841 (executor driver) (1/7)
+🚀 25/08/10 05:35:15 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 511 ms on f1beba1b1841 (executor driver) (2/7)
+🚀 25/08/10 05:35:15 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 518 ms on f1beba1b1841 (executor driver) (3/7)
+🚀 25/08/10 05:35:15 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 513 ms on f1beba1b1841 (executor driver) (4/7)
+🚀 25/08/10 05:35:15 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 515 ms on f1beba1b1841 (executor driver) (5/7)
+🚀 25/08/10 05:35:15 INFO PythonAccumulatorV2: Connected to AccumulatorServer at host: 127.0.0.1 port: 39123
+🚀 25/08/10 05:35:15 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 515 ms on f1beba1b1841 (executor driver) (6/7)
+🚀 25/08/10 05:35:15 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 514 ms on f1beba1b1841 (executor driver) (7/7)
+🚀 25/08/10 05:35:15 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+🚀 25/08/10 05:35:15 INFO DAGScheduler: ResultStage 0 (collect at /app/eeg_spark_etl/processing/process_subjects.py:76) finished in 0.569 s
+🚀 25/08/10 05:35:15 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+🚀 25/08/10 05:35:15 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+🚀 25/08/10 05:35:15 INFO DAGScheduler: Job 0 finished: collect at /app/eeg_spark_etl/processing/process_subjects.py:76, took 0.581038 s
+🚀 Rows per partition: [0, 0, 0, 0, 0, 0, 1]
+🚀 Processing subjects...
+🚀 🔍 Checking for existing processed subjects data...
+🚀 Reuse flag: No
+🚀 Check path: data/macMini2.0.0/processed_subjects
+🚀 25/08/10 05:35:15 INFO CodeGenerator: Code generated in 7.5415 ms
+🚀 ⚠️  Reuse not enabled for processed_subjects (flag: No)
+🚀 🔄 STEP 1: PROCEEDING - Processing subjects (feature extraction)...
+🚀 🔄 STEP 1: PROCESSING SUBJECTS - Feature extraction using UDTF...
+🚀 🔄 Using UDTF approach: SQL with TABLE ProcessSubjectUDTF
+🚀 🔍 SQL Query:
+🚀 -- Process subjects using UDTF for EEG feature extraction
+🚀 -- Config is passed via closure, not as a DataFrame column
+🚀 SELECT * FROM ProcessSubjectUDTF(TABLE(subjects_metadata))
+🚀 25/08/10 05:35:15 INFO CodeGenerator: Code generated in 8.512417 ms
+🚀 ⚠️  STEP 2: SAVE NOT CONFIGURED - Skipping save of processed subjects
+🚀 Set 'save_processed_subjects': 'Yes' in config to save data
+🚀 🔄 STEP 3: APPLYING FEATURE TRANSFORMATIONS...
+🚀 💾 STEP 4: SAVE CONFIGURED - Saving transformed features...
+🚀 Traceback (most recent call last):
+🚀 File "/app/main.py", line 201, in <module>
+🚀 main()
+🚀 File "/app/main.py", line 189, in main
+🚀 result: Dict[str, str] = process_subjects(spark, config_manager)
+🚀 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+🚀 File "/app/eeg_spark_etl/processing/process_subjects.py", line 242, in process_subjects
+🚀 transformed_df.write.parquet(str(save_transformed_path), mode="overwrite")
+🚀 File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/readwriter.py", line 1721, in parquet
+🚀 File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+🚀 File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+🚀 File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 326, in get_return_value
+🚀 py4j.protocol.Py4JJavaError: An error occurred while calling o137.parquet.
+🚀 : java.lang.RuntimeException: org.apache.hadoop.security.KerberosAuthException: failure to login: javax.security.auth.login.LoginException: java.lang.NullPointerException: invalid null input: name
+🚀 at jdk.security.auth/com.sun.security.auth.UnixPrincipal.<init>(Unknown Source)
+🚀 at jdk.security.auth/com.sun.security.auth.module.UnixLoginModule.login(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invoke(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invokePriv(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.login(Unknown Source)
+🚀 at org.apache.hadoop.security.UserGroupInformation$HadoopLoginContext.login(UserGroupInformation.java:2065)
+🚀 at org.apache.hadoop.security.UserGroupInformation.doSubjectLogin(UserGroupInformation.java:1975)
+🚀 at org.apache.hadoop.security.UserGroupInformation.createLoginUser(UserGroupInformation.java:719)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:669)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:579)
+🚀 at org.apache.hadoop.mapreduce.task.JobContextImpl.<init>(JobContextImpl.java:72)
+🚀 at org.apache.hadoop.mapreduce.Job.<init>(Job.java:152)
+🚀 at org.apache.hadoop.mapreduce.Job.getInstance(Job.java:195)
+🚀 at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:101)
+🚀 at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:190)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:113)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:111)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:125)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+🚀 at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
+🚀 at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
+🚀 at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
+🚀 at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
+🚀 at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
+🚀 at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
+🚀 at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:869)
+🚀 at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:391)
+🚀 at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:364)
+🚀 at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:243)
+🚀 at org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:802)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+🚀 at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+🚀 at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+🚀 at py4j.Gateway.invoke(Gateway.java:282)
+🚀 at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+🚀 at py4j.commands.CallCommand.execute(CallCommand.java:79)
+🚀 at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+🚀 at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+🚀 at java.base/java.lang.Thread.run(Unknown Source)
+🚀 at org.apache.hadoop.mapreduce.task.JobContextImpl.<init>(JobContextImpl.java:74)
+🚀 at org.apache.hadoop.mapreduce.Job.<init>(Job.java:152)
+🚀 at org.apache.hadoop.mapreduce.Job.getInstance(Job.java:195)
+🚀 at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:101)
+🚀 at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:190)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:113)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:111)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:125)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+🚀 at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
+🚀 at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
+🚀 at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
+🚀 at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
+🚀 at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
+🚀 at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
+🚀 at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:869)
+🚀 at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:391)
+🚀 at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:364)
+🚀 at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:243)
+🚀 at org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:802)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+🚀 at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+🚀 at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+🚀 at py4j.Gateway.invoke(Gateway.java:282)
+🚀 at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+🚀 at py4j.commands.CallCommand.execute(CallCommand.java:79)
+🚀 at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+🚀 at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+🚀 at java.base/java.lang.Thread.run(Unknown Source)
+🚀 Caused by: org.apache.hadoop.security.KerberosAuthException: failure to login: javax.security.auth.login.LoginException: java.lang.NullPointerException: invalid null input: name
+🚀 at jdk.security.auth/com.sun.security.auth.UnixPrincipal.<init>(Unknown Source)
+🚀 at jdk.security.auth/com.sun.security.auth.module.UnixLoginModule.login(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invoke(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invokePriv(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.login(Unknown Source)
+🚀 at org.apache.hadoop.security.UserGroupInformation$HadoopLoginContext.login(UserGroupInformation.java:2065)
+🚀 at org.apache.hadoop.security.UserGroupInformation.doSubjectLogin(UserGroupInformation.java:1975)
+🚀 at org.apache.hadoop.security.UserGroupInformation.createLoginUser(UserGroupInformation.java:719)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:669)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:579)
+🚀 at org.apache.hadoop.mapreduce.task.JobContextImpl.<init>(JobContextImpl.java:72)
+🚀 at org.apache.hadoop.mapreduce.Job.<init>(Job.java:152)
+🚀 at org.apache.hadoop.mapreduce.Job.getInstance(Job.java:195)
+🚀 at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:101)
+🚀 at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:190)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:113)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:111)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:125)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+🚀 at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
+🚀 at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
+🚀 at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
+🚀 at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
+🚀 at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
+🚀 at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
+🚀 at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:869)
+🚀 at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:391)
+🚀 at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:364)
+🚀 at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:243)
+🚀 at org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:802)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+🚀 at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+🚀 at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+🚀 at py4j.Gateway.invoke(Gateway.java:282)
+🚀 at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+🚀 at py4j.commands.CallCommand.execute(CallCommand.java:79)
+🚀 at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+🚀 at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+🚀 at java.base/java.lang.Thread.run(Unknown Source)
+🚀 at org.apache.hadoop.security.UserGroupInformation.doSubjectLogin(UserGroupInformation.java:1986)
+🚀 at org.apache.hadoop.security.UserGroupInformation.createLoginUser(UserGroupInformation.java:719)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:669)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:579)
+🚀 at org.apache.hadoop.mapreduce.task.JobContextImpl.<init>(JobContextImpl.java:72)
+🚀 ... 45 more
+🚀 Caused by: javax.security.auth.login.LoginException: java.lang.NullPointerException: invalid null input: name
+🚀 at jdk.security.auth/com.sun.security.auth.UnixPrincipal.<init>(Unknown Source)
+🚀 at jdk.security.auth/com.sun.security.auth.module.UnixLoginModule.login(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invoke(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invokePriv(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.login(Unknown Source)
+🚀 at org.apache.hadoop.security.UserGroupInformation$HadoopLoginContext.login(UserGroupInformation.java:2065)
+🚀 at org.apache.hadoop.security.UserGroupInformation.doSubjectLogin(UserGroupInformation.java:1975)
+🚀 at org.apache.hadoop.security.UserGroupInformation.createLoginUser(UserGroupInformation.java:719)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:669)
+🚀 at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:579)
+🚀 at org.apache.hadoop.mapreduce.task.JobContextImpl.<init>(JobContextImpl.java:72)
+🚀 at org.apache.hadoop.mapreduce.Job.<init>(Job.java:152)
+🚀 at org.apache.hadoop.mapreduce.Job.getInstance(Job.java:195)
+🚀 at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:101)
+🚀 at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:190)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:113)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:111)
+🚀 at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:125)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+🚀 at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+🚀 at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
+🚀 at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
+🚀 at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+🚀 at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
+🚀 at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
+🚀 at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
+🚀 at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
+🚀 at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
+🚀 at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:869)
+🚀 at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:391)
+🚀 at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:364)
+🚀 at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:243)
+🚀 at org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:802)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+🚀 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+🚀 at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+🚀 at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+🚀 at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+🚀 at py4j.Gateway.invoke(Gateway.java:282)
+🚀 at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+🚀 at py4j.commands.CallCommand.execute(CallCommand.java:79)
+🚀 at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+🚀 at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+🚀 at java.base/java.lang.Thread.run(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invoke(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext$4.run(Unknown Source)
+🚀 at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.invokePriv(Unknown Source)
+🚀 at java.base/javax.security.auth.login.LoginContext.login(Unknown Source)
+🚀 at org.apache.hadoop.security.UserGroupInformation$HadoopLoginContext.login(UserGroupInformation.java:2065)
+🚀 at org.apache.hadoop.security.UserGroupInformation.doSubjectLogin(UserGroupInformation.java:1975)
+🚀 ... 49 more
+🚀 25/08/10 05:35:15 INFO SparkContext: Invoking stop() from shutdown hook
+🚀 25/08/10 05:35:15 INFO SparkContext: SparkContext is stopping with exitCode 0.
+🚀 25/08/10 05:35:15 INFO SparkUI: Stopped Spark web UI at http://f1beba1b1841:4040
+🚀 25/08/10 05:35:15 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+🚀 25/08/10 05:35:15 INFO MemoryStore: MemoryStore cleared
+🚀 25/08/10 05:35:15 INFO BlockManager: BlockManager stopped
+🚀 25/08/10 05:35:15 INFO BlockManagerMaster: BlockManagerMaster stopped
+🚀 25/08/10 05:35:15 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+🚀 25/08/10 05:35:15 INFO SparkContext: Successfully stopped SparkContext
+🚀 25/08/10 05:35:15 INFO ShutdownHookManager: Shutdown hook called
+🚀 25/08/10 05:35:15 INFO ShutdownHookManager: Deleting directory /tmp/spark-aefe61b4-94cb-4428-9c23-6e6090332c1e
+🚀 25/08/10 05:35:15 INFO ShutdownHookManager: Deleting directory /tmp/spark-f930c24d-18ab-41f4-8003-57675e26d26b
+🚀 25/08/10 05:35:15 INFO ShutdownHookManager: Deleting directory /tmp/spark-aefe61b4-94cb-4428-9c23-6e6090332c1e/pyspark-8c73bf0a-f2e7-43cc-8125-4eb5f3e9fafd
+
+❌ Singularity command failed with exit code 1
+
+🔍 Error details: Command '['singularity', 'run', '--bind', '/eeg-full-pipeline/config/config_macmini1.0.0_09-08-2025_1751.yaml:/app/config.yaml', '--bind', './logs/spark-events:/opt/bitnami/spark/logs/', '--bind', './data:/app/data', '--bind', '/Volumes/CrucialX6/Home/bigData/ds004504-download/sub-001/eeg/sub-001_task-eyesclosed_eeg.set:/Volumes/CrucialX6/Home/bigData/ds004504-download/sub-001/eeg/sub-001_task-eyesclosed_eeg.set', './containers/eeg-pyspark-pipeline.sif', 'spark-submit', '--conf', 'spark.jars.ivy=/tmp/.ivy2', '/app/main.py', '--config', '/app/config.yaml']' returned non-zero exit status 1.
+
