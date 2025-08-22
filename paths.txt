@@ -1,0 +1,2 @@
+configPath='/Users/user/projects/HPC-simulation/config_testloso1.0.1_22-08-2025_1115.yaml'
+dataPath='/Users/user/bigData/ds004504-download'

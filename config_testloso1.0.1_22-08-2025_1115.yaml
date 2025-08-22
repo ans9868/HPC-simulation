@@ -1,0 +1,86 @@
+project:
+  name: testLOSO1.0.1
+  output_dir: ./data
+  experiment_type: ML (Classification)
+  subjects_or_events: subjects
+  deployment_method: Docker
+  config_name: config_testloso1.0.1_22-08-2025_1115.yaml
+data_input:
+  groups:
+    alz:
+    - /Users/user/bigData/ds004504-download/sub-037/eeg/sub-037_task-eyesclosed_eeg.set
+    - /Users/user/bigData/ds004504-download/sub-038/eeg/sub-038_task-eyesclosed_eeg.set
+    cntrl:
+    - /Users/user/bigData/ds004504-download/sub-035/eeg/sub-035_task-eyesclosed_eeg.set
+    - /Users/user/bigData/ds004504-download/sub-036/eeg/sub-036_task-eyesclosed_eeg.set
+  reuse_processed_subjects: 'Yes'
+  save_processed_subjects: 'Yes'
+  reuse_transformed: 'Yes'
+  save_transformed: 'Yes'
+preprocessing:
+  bands:
+    Delta:
+    - 0.5
+    - 4
+  window_size: 3.0
+  sliding_window: 0.0
+  reject_by_annotation: 'Yes'
+  normalize_psd: 'Yes'
+  use_epoch_rejection: 'Yes'
+  epoch_rejection:
+    reject: 600.0
+    flat: 0.5
+  extreme_datapoint_removal: null
+feature_extraction:
+  method: welch
+  features:
+    per_channel_across_bands:
+    - band_power
+    - mean
+    per_channel_per_band:
+    - band_power
+  show_intermediate_results: 'No'
+  show_intermediate_counts: 'No'
+  output_format: ml
+feature_transformation:
+  transformations:
+  - Log transform (log1p)
+  - Z-score standardization
+  synthetic: None
+data_leakage_prevention:
+  strategy: LOSO (Leave-One-Subject-Out) - systematic cross-validation (recommended
+    for small datasets)
+  loso_subjects_per_group: 4
+  individual_loso: true
+  loso_folds:
+  - - /Users/user/bigData/ds004504-download/sub-037/eeg/sub-037_task-eyesclosed_eeg.set
+  - - /Users/user/bigData/ds004504-download/sub-038/eeg/sub-038_task-eyesclosed_eeg.set
+  - - /Users/user/bigData/ds004504-download/sub-035/eeg/sub-035_task-eyesclosed_eeg.set
+  - - /Users/user/bigData/ds004504-download/sub-036/eeg/sub-036_task-eyesclosed_eeg.set
+  loso_metadata:
+    total_folds: 4
+    subjects_per_group: 4
+    subjects_per_group_per_fold: 1
+    total_subjects: 4
+    groups:
+    - alz
+    - cntrl
+    num_groups: 2
+    fold_generation_method: individual_loso
+  use_loso: true
+pyspark:
+  master: '6'
+  driver_memory: '6'
+  executor_memory: '6'
+  executor_cores: '2'
+  shuffle_partitions: '8'
+ray:
+  models:
+  - XGBoost
+  - MLP (Neural Network)
+  num_trials: '10'
+  max_concurrent: '2'
+  metric: accuracy
+  mode: max
+  cv_folds: '5'
+  random_state: '42'
